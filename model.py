@@ -24,11 +24,11 @@ class User(me.Document):
 
 
 class Entry(me.Document):
-    id = me.ObjectIdField(primary_key=True, default=ObjectId)
+    id = me.StringField(primary_key=True)
     user_id = me.ReferenceField(User)
     title = me.StringField()
     content = me.StringField()
-    image = me.URLField()
+    images = me.ListField(me.StringField())
     mood = me.StringField()
     date = me.StringField()
     activities = me.ListField(me.StringField())
