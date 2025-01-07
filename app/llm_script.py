@@ -1,3 +1,4 @@
+import os
 from openai import OpenAI
 import json
 from fastapi import HTTPException
@@ -5,6 +6,7 @@ from fastapi import HTTPException
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
+
 
 def process_transcript(transcript: str):
     prompt = f"""

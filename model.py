@@ -7,7 +7,6 @@ from typing import Dict, List, Optional, Union
 
 import mongoengine as me
 from bson import ObjectId
-from typeguard import typechecked
 
 import uuid
 from typing import Optional

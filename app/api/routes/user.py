@@ -4,6 +4,10 @@ from model import User
 router = APIRouter(tags=["user"])
 
     
+@router.get("/user/hi")
+def hello():
+    return {"message": "Hello, User"}
+
 @router.get('/user/create')
 async def create_user_from_request():
     user = User(name="Alice", email="alice@example.com", id = "124532")
