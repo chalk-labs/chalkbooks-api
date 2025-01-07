@@ -1,18 +1,20 @@
 
 import os
-import requests
-from fastapi import FastAPI, Request, HTTPException, Body
-from pydantic import BaseModel, Field
-from typing import Any, Dict, List, Optional
 from pathlib import Path
-from typing import Optional
-from pprint import pprint
+
+from pymongo import MongoClient
 from config import *
 from fastapi.middleware.cors import CORSMiddleware
-from model import ConversationTranscript
+from fastapi import FastAPI
+from app.core.config import settings
+from app.api.main import api_router
+import config
+
+dotenv_file = Path(f".env.dev")
+load_dotenv(dotenv_file)
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 app = FastAPI()
-
 
 
 app.add_middleware(
@@ -24,7 +26,9 @@ app.add_middleware(
 )
 
 
-@app.post("/save-transcript")
-async def connect_to_dailybots(payload: dict = Body(...)):
-    ConversationTranscript.create_from_(payload)
-    return payload
+@app.get("/")
+async def hello():
+    return {"message": "Hello, World!"}
+
+
+app.include_router(api_router, prefix=settings.API_V1_STR)

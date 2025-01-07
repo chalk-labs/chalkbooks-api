@@ -1,0 +1,36 @@
+
+# class User(BaseModel):
+#     id : int
+#     username : str
+#     email : str
+#     password_hash : str
+
+# class Entries(BaseModel):
+#     id : int
+#     user_id : str
+#     title : str
+#     content : str
+#     image : str
+#     mood : str
+#     date : str
+#     activities : List[str]
+#     feelings : List[str]
+
+# import os
+# from pathlib import Path
+# from urllib.parse import quote_plus
+# from dotenv import load_dotenv
+# from motor.motor_asyncio import AsyncIOMotorClient
+
+
+# dotenv_file = Path(f".env.dev")
+# load_dotenv(dotenv_file)
+# username = quote_plus(os.environ['MONGODB_USERNAME'])
+# password = quote_plus(os.environ['MONGODB_PASSWORD'])
+# host = os.environ['MONGODB_HOST']
+# db_name= os.environ['MONGODB_NAME']
+# connection_uri = f"mongodb+srv://{username}:{password}@{host}/{db_name}?retryWrites=true&w=majority"
+# client = AsyncIOMotorClient(connection_uri)
+# database = client.prod  # Replace 'mydatabase' with your DB name
+# users = database.users  # Replace 'mycollection' with your collection name
+# entries = database.entries  # Replace 'mycollection' with your collection name
