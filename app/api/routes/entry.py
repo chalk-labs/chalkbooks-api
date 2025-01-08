@@ -1,22 +1,10 @@
 
 from typing import List
 from fastapi import APIRouter, Body, HTTPException
+from app.llm_script import llm_json_maker
 from model import User, Entry
 router = APIRouter(tags=["entry"])
 
-
-# class Entry(me.Document):
-# id = me.StringField(primary_key=True)
-# user_id = me.ReferenceField(User)
-# title = me.StringField()
-# content = me.StringField()
-# image = me.URLField()
-# mood = me.StringField()
-# date = me.DateTimeField()
-# activities = me.ListField(me.StringField())
-# feelings = me.ListField(me.StringField())
-# created_at = me.DateTimeField(auto_now_add=True)
-# updated_at = me.DateTimeField(auto_now=True)
 
 @router.get('/entry/create')
 async def create_entry_from_request():
@@ -91,3 +79,7 @@ async def update_entry(data: dict = Body(...)):
         raise HTTPException(status_code=404, detail="entry not found")
     entry.update(**data)
     return data
+
+@router.post('/llm/newEntry')
+async def create_entry_from_llm(data: dict = Body(...)):
+    return llm_json_maker(data['text'])
